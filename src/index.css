@@ -73,3 +73,31 @@ button { font: inherit; color: inherit; border: none; cursor: pointer; }
   25% { transform: translateX(-12px); }
   75% { transform: translateX(12px); }
 }
+
+.cases { display: flex; gap: 16px; }
+
+.case {
+  width: 160px; height: 160px;
+  font-size: 96px;
+  border-radius: 24px;
+  background: white;
+  border: 4px dashed #ccc;
+}
+.case--juste { background: #95d5b2; border: 4px solid #52b788; }
+.case--erreur { background: #ffadad; border: 4px solid #e57373; animation: secouer 0.4s; }
+
+.clavier { display: flex; flex-direction: column; gap: 20px; }
+.rangee { display: flex; gap: 20px; justify-content: center; }
+
+.lettre {
+  width: 110px; height: 110px;
+  font-size: 64px;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 6px 0 #ddd;
+  color: #1d5fa8;
+}
+.lettre:active { transform: translateY(4px); box-shadow: 0 2px 0 #ddd; }
+.lettre:disabled { opacity: 0.5; }
+
+.lettre--voyelle { color: #d62828; }

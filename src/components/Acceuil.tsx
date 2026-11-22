@@ -1,22 +1,23 @@
-import type { Niveau } from '../data/sons'
+import type { Partie } from '../types'
 import { debloquerAudio } from '../utils/audio'
 
 interface Props {
-  onJouer: (niveau: Niveau) => void
+  onJouer: (partie: Partie) => void
 }
 
 export default function Accueil({ onJouer }: Props) {
-  const choisir = (niveau: Niveau) => {
+  const choisir = (partie: Partie) => {
     debloquerAudio()
-    onJouer(niveau)
+    onJouer(partie)
   }
 
   return (
     <main className="accueil">
       <h1 className="titre">📚 Lis avec moi</h1>
       <div className="niveaux">
-        <button className="btn-niveau" onClick={() => choisir('voyelle')}>a i o</button>
-        <button className="btn-niveau" onClick={() => choisir('syllabe')}>la mi ro</button>
+        <button className="btn-niveau" onClick={() => choisir({ jeu: 'sons', niveau: 'voyelle' })}>a i o</button>
+        <button className="btn-niveau" onClick={() => choisir({ jeu: 'sons', niveau: 'syllabe' })}>la mi ro</button>
+        <button className="btn-niveau" onClick={() => choisir({ jeu: 'syllabes' })}>m + a</button>
       </div>
     </main>
   )

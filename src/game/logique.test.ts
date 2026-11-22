@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { melanger, creerQuestion } from './logique'
+import { melanger, creerQuestion, lettresDisponibles, estBonneSyllabe } from './logique'
 import { sons } from '../data/sons'
 
 const voyelles = sons.filter((s) => s.niveau === 'voyelle')
@@ -32,5 +32,21 @@ describe('creerQuestion', () => {
       expect(question.cible.id).not.toBe(precedente.id)
       precedente = question.cible
     }
+  })
+})
+
+const syllabes = sons.filter((s) => s.niveau === 'syllabe')
+
+describe('jeu des syllabes', () => {
+  it('trouve les consonnes et les voyelles à partir des données', () => {
+    const { consonnes, voyelles } = lettresDisponibles(syllabes)
+    expect(consonnes.sort()).toEqual(['l', 'm', 'r'])
+    expect(voyelles.sort()).toEqual(['a', 'i', 'o', 'u'])
+  })
+
+  it('valide la bonne syllabe et refuse une mauvaise', () => {
+    const ma = syllabes.find((s) => s.id === 'ma')!
+    expect(estBonneSyllabe(ma, 'm', 'a')).toBe(true)
+    expect(estBonneSyllabe(ma, 'l', 'a')).toBe(false)
   })
 })
